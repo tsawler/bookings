@@ -1,0 +1,193 @@
+{{define "admin"}}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Administration</title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="/static/admin/vendors/ti-icons/css/themify-icons.css">
+        <link rel="stylesheet" href="/static/admin/vendors/base/vendor.bundle.base.css">
+        <!-- endinject -->
+        <!-- plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+        <link rel="stylesheet" href="/static/admin/css/style.css">
+        <!-- endinject -->
+        <link rel="shortcut icon" href="/static/admin/images/favicon.png"/>
+        <style>
+            .content-wrapper {
+                background: white;
+            }
+            label {
+                font-weight: bold;
+            }
+            .notie-container {
+                z-index: 50000;
+            }
+        </style>
+        {{block "css" . }}
+
+        {{end}}
+    </head>
+    <body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="ti-view-list"></span>
+                </button>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile">
+                        <a class="nav-link" href="/">
+                            Public Site
+                        </a>
+                    </li>
+                    <li class="nav-item nav-profile">
+                        <a class="nav-link" href="/user/logout">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/dashboard">
+                            <i class="ti-shield menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                           aria-controls="ui-basic">
+                            <i class="ti-palette menu-icon"></i>
+                            <span class="menu-title">Reservations</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link" href="/admin/reservations-new">New
+                                        Reservations</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/admin/reservations-all">All
+                                        Reservations</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/reservations-calendar">
+                            <i class="ti-layout-list-post menu-icon"></i>
+                            <span class="menu-title">Reservation Calendar</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4 class="font-weight-bold mb-0">{{block "page-title" .}} {{end}}</h4>
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {{block "content" .}}
+
+                        {{end}}
+                    </div>
+
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script src="/static/admin/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="/static/admin/js/off-canvas.js"></script>
+    <script src="/static/admin/js/hoverable-collapse.js"></script>
+    <script src="/static/admin/js/template.js"></script>
+    <script src="/static/admin/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="https://unpkg.com/notie"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/admin/js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+
+    <script>
+        let attention = Prompt();
+
+        function notify(msg, msgType) {
+            notie.alert({
+                type: msgType,
+                text: msg,
+            })
+        }
+
+        function notifyModal(title, text, icon, confirmationButtonText) {
+            Swal.fire({
+                title: title,
+                html: text,
+                icon: icon,
+                confirmButtonText: confirmationButtonText
+            })
+        }
+
+        {{with .Error}}
+        notify("{{.}}", "error")
+        {{end}}
+
+        {{with .Flash}}
+        notify("{{.}}", "success")
+        {{end}}
+
+        {{with .Warning}}
+        notify("{{.}}", "warning")
+        {{end}}
+
+    </script>
+
+    {{block "js" . }}
+
+    {{end}}
+    </body>
+
+    </html>
+
+
+{{end}}

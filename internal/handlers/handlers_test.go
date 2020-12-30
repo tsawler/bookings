@@ -383,8 +383,6 @@ func TestAvailabilityJSON(t *testing.T) {
 			t.Error("failed to parse json!")
 		}
 
-		t.Log(j)
-
 		if j.OK != e.expectedOK {
 			t.Errorf("%s: expected %v but got %v", e.name, e.expectedOK, j.OK)
 		}

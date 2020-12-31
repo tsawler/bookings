@@ -57,14 +57,14 @@
                         {{if eq .IsAuthenticated 1}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
                             Admin
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/admin/dashboard">Dashboard</a>
-                            <a class="dropdown-item" href="/user/logout">Logout</a>
-                        </div>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/admin/dashboard">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                        </ul>
                     </li>
                     {{else}}
                         <a class="nav-link" href="/user/login" tabindex="-1" aria-disabled="true">Login</a>

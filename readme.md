@@ -11,4 +11,4 @@ Dependencies:
 - [nosurf](https://github.com/justinas/nosurf)
 - [pgx](https://github.com/jackc/pgx/v4)
 - [simple mail](https://github.com/xhit/go-simple-mail/v2)
-- [Go validator])(https://github.com/asaskevich/govalidator)
+- [Go validator](https://github.com/asaskevich/govalidator)

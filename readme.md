@@ -1,9 +1,10 @@
+
 # Bookings and Reservations
 
 This is the repository for my bookings and reservations project, which is part of 
 the Udemy course [Building modern web applications in Go](https://www.udemy.com/course/building-modern-web-applications-with-go/?referralCode=0415FB906223F10C6800).
 
-- Built in Go version 1.15
+- Built in Go version 1.17.x
   
 Dependencies:
 

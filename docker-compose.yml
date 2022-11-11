@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: 'postgres:14.5'
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bookings
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+  # mailhog: a fake smtp server with a web interface
+  mailhog:
+    image: 'jcalonso/mailhog:latest'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    deploy:
+      mode: replicated
+      replicas: 1
